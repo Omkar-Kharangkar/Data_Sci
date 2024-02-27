@@ -28,7 +28,7 @@ results1 = {}
 # In[3]:
 
 
-df = pd.read_csv('disabled_C.csv')
+df = pd.read_csv("C:\\Users\\Lenovo\\Downloads\\disabled_C.csv")
 total_records = df.shape[0]
 total_records
 df.info()
@@ -91,7 +91,7 @@ import os
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-df = pd.read_csv('disabled_C.csv')
+df = pd.read_csv("C:\\Users\\Lenovo\\Downloads\\disabled_C.csv")
 total = df['Country'].value_counts()[:10]
 plt.figure(figsize=(22,5))
 total = total.to_frame()
@@ -235,6 +235,7 @@ question_no = 0
 data_after_split = split_data(question_no, df, 0)
 
 X_train = torch.tensor(data_after_split["X_train"])
+print("this is x_train",X_train.shape)
 y_train = torch.tensor(data_after_split["y_train"])
 X_test = torch.tensor(data_after_split["X_test"])
 y_test = torch.tensor(data_after_split["y_test"])
@@ -286,7 +287,8 @@ def calc_accuracy(model):
 
 
 epochs = 20000
-input_dim = 22
+input_dim = 24 #this was 22 before, but we have 24 columns or
+# the size of X_train is [1065,24]
 if question_no == 0:
     output_dim = 1  # Single binary output
 else:
@@ -315,9 +317,11 @@ def calc_logistic_regression(no_question):
             optimizer.zero_grad()
             outputs = model(x)
             if question_no == 0:
+                #loss = criterion(outputs.squeeze(), labels.unsqueeze(1))
                 loss = criterion(torch.squeeze(outputs), labels)
             else:
                 # labels must be type Long
+                #loss = criterion(outputs.squeeze(), labels)
                 loss = criterion(torch.squeeze(outputs), (labels*2).long())
             # exit(0)
 
