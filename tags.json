@@ -3,5 +3,6 @@
     "key": "env",
     "value": "dev",
     "default": "master change"
+    "key": "this is fe3 change"
   }
 ]
