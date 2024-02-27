@@ -14,7 +14,7 @@ import seaborn as sns
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
-import itertools
+
 from xgboost import XGBClassifier
 
 
